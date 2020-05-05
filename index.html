@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda</title>
+
+    <!-- Fuente de Raleway de google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- El icono de la aplicacion -->
+    <link rel="icon" type="image/icon" href="./img/favicon.ico" />
+
+    <!-- Kit de fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/db0bba2760.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <a href="#" class="navbar__brand">
+          <img src="./img/logo.png" alt="Logo de Carmú" class="navbar__brand__img"/>
+        </a>
+
+        <button class="navbar__toggler">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="navbar__collapse collapse">
+            <ul class="navbar__list">
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link">
+                        <i class="navbar__link__prepend fas fa-home"></i>
+                        <span class="navbar__link__body">Principal</span>
+                    </a>
+                </li>
+                <li class="navbar__item dropdown">
+                    <a href="#" class="navbar__link">
+                        <i class="navbar__link__prepend fas fa-store-alt"></i>
+                        <span class="navbar__link__body">Productos</span>
+                        <i class="navbar__link__prepend fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown__list">
+                        <li class="dropdown__item">
+                            <a href="#" class="dropdown__link">Relojería</a>
+                        </li>
+                        <li class="dropdown__item">
+                            <a href="#" class="dropdown__link">Accesorios</a>
+                        </li>
+                        <li class="dropdown__item">
+                            <a href="#" class="dropdown__link">Bolsos</a>
+                        </li>
+                        <li class="dropdown__item">
+                            <a href="#" class="dropdown__link">Ropa</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link">
+                        <i class="navbar__link__prepend fas fa-address-book"></i>
+                        <span class="navbar__link__body">Contactanos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+  </body>
+</html>

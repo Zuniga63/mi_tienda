@@ -1,0 +1,55 @@
+@import './normalize.css';
+:root{
+    --dark: #343a40;
+}
+
+*{
+    box-sizing: border-box;;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+}
+
+.collapse{
+    display: none;
+}
+
+.collapse-show{
+    display: block;
+}
+
+.header{
+    background-color: var(--dark);
+}
+
+.navbar{
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar__brand{
+    display: inline-block;
+}
+
+.navbar__brand__img{
+    height: 40px;
+}
+
+.navbar__toggler{
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar__toggler:focus{
+    outline: 5px auto rgb(77, 144, 254);
+}
