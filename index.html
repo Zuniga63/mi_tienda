@@ -12,13 +12,7 @@
     />
 
     <!-- El icono de la aplicacion -->
-    <link rel="icon" type="image/icon" href="./img/favicon.ico" />
-
-    <!-- Kit de fontawesome -->
-    <script
-      src="https://kit.fontawesome.com/db0bba2760.js"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="icon" type="image/icon" href="./img/favicon.ico"/>
 
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -29,25 +23,26 @@
           <img src="./img/logo.png" alt="Logo de Carmú" class="navbar__brand__img"/>
         </a>
 
-        <button class="navbar__toggler">
-            <i class="fas fa-bars"></i>
+        <button class="navbar__toggler" id="navbar-toggler">
+            <i class="icon-bars"></i>
         </button>
 
-        <div class="navbar__collapse collapse">
+        <div class="navbar__collapse">
             <ul class="navbar__list">
                 <li class="navbar__item">
-                    <a href="#" class="navbar__link">
-                        <i class="navbar__link__prepend fas fa-home"></i>
+                    <a href="#" class="navbar__link link__active">
+                        <i class="navbar__link__prepend icon-home"></i>
                         <span class="navbar__link__body">Principal</span>
                     </a>
                 </li>
                 <li class="navbar__item dropdown">
                     <a href="#" class="navbar__link">
-                        <i class="navbar__link__prepend fas fa-store-alt"></i>
+                        <i class="navbar__link__prepend icon-buy-bag"></i>
                         <span class="navbar__link__body">Productos</span>
-                        <i class="navbar__link__prepend fas fa-chevron-down"></i>
+                        <i class="navbar__link__append icon-chevron-down"></i>
                     </a>
-                    <ul class="dropdown__list">
+                    <nav class="dropdown__menu">
+                      <ul class="dropdown__list">
                         <li class="dropdown__item">
                             <a href="#" class="dropdown__link">Relojería</a>
                         </li>
@@ -61,11 +56,12 @@
                             <a href="#" class="dropdown__link">Ropa</a>
                         </li>
                     </ul>
+                    </nav>
                 </li>
 
                 <li class="navbar__item">
                     <a href="#" class="navbar__link">
-                        <i class="navbar__link__prepend fas fa-address-book"></i>
+                        <i class="navbar__link__prepend icon-correo"></i>
                         <span class="navbar__link__body">Contactanos</span>
                     </a>
                 </li>
@@ -73,5 +69,7 @@
         </div>
       </nav>
     </header>
+
+    <script src="./js/app.js"></script>
   </body>
 </html>

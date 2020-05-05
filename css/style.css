@@ -1,19 +1,26 @@
 @import './normalize.css';
+  /*Se importan las fuentes  */
+@import '../font/style.css';
 :root{
     --dark: #343a40;
 }
 
 *{
     box-sizing: border-box;;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body{
     font-family: 'Raleway', sans-serif;
     font-size: 16px;
+    min-height: 100vh;
 }
+
+
 
 .collapse{
     display: none;
+    
 }
 
 .collapse-show{
@@ -26,7 +33,10 @@ body{
 
 .navbar{
     padding: 0.5rem 1rem;
+    position: relative;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -53,3 +63,71 @@ body{
 .navbar__toggler:focus{
     outline: 5px auto rgb(77, 144, 254);
 }
+
+.navbar__collapse{
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    overflow: hidden;
+    height: 0px;
+    transition-property: height;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+}
+
+.navbar__list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin: 0 auto;
+}
+
+.navbar__link{
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.navbar__link__append{
+    float: right;
+}
+
+.navbar__link:hover{
+    color: #fff;
+}
+
+.link__active{
+    color: #fff;
+}
+
+.dropdown__menu{
+    transition-property: height;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    height: 0;
+    overflow: hidden;
+}
+
+.dropdown__list{
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    padding: 0.5rem 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    margin:0.125rem 0;
+    color: #212529;
+}
+
+
+
+.dropdown__link{
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1rem;
+}
+
