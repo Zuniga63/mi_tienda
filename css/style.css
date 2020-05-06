@@ -64,7 +64,7 @@ body{
     outline: 5px auto rgb(77, 144, 254);
 }
 
-.navbar__collapse{
+.navbar__nav{
     flex-basis: 100%;
     flex-grow: 1;
     align-items: center;
@@ -102,7 +102,7 @@ body{
     color: #fff;
 }
 
-.dropdown__menu{
+.dropdown__nav{
     transition-property: height;
     transition-duration: 0.5s;
     transition-timing-function: ease-in;

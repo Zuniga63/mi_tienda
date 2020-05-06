@@ -1,5 +1,4 @@
-const navbarToggler = document.getElementById('navbar-toggler');
-const navbarCollapse = document.querySelector('.navbar .navbar__collapse');
+
 
 /**
  * Este metodo lo que hace es modificar el alto del elemento html ya sea un navbar__collapse o un 
@@ -36,7 +35,7 @@ const showMenu = object => {
 
 const menuController = () => {
     const navbarToggler = document.getElementById('navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar .navbar__collapse');
+    const navbarCollapse = document.querySelector('.navbar .navbar__nav');
     const dropdowns = document.querySelectorAll('.dropdown');
 
     //Se agrega la fucionalidad del boton del menú
@@ -47,7 +46,17 @@ const menuController = () => {
     //Se agrega la funcionalidad a los menú de los dropdown
     dropdowns.forEach(drop => {
         drop.addEventListener('click', () => {
-            showMenu(drop.querySelector('.dropdown__menu'));
+            let menu = drop.querySelector('.dropdown__nav');
+            showMenu(menu);
+            //Con lo siguiente se actualiza el chevron que apunta hacia abajo o arriba
+            let caret = drop.querySelector('.navbar__link__append');
+            if(menu.classList.contains('show')){
+                caret.classList.remove('icon-chevron-down');
+                caret.classList.add('icon-chevron-up');
+            }else{
+                caret.classList.remove('icon-chevron-up');
+                caret.classList.add('icon-chevron-down');
+            }
         })
     });
 }
