@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconbasic';
-  src:  url('fonts/iconbasic.eot?k8jvlc');
-  src:  url('fonts/iconbasic.eot?k8jvlc#iefix') format('embedded-opentype'),
-    url('fonts/iconbasic.ttf?k8jvlc') format('truetype'),
-    url('fonts/iconbasic.woff?k8jvlc') format('woff'),
-    url('fonts/iconbasic.svg?k8jvlc#iconbasic') format('svg');
+  src:  url('fonts/iconbasic.eot?opd0fo');
+  src:  url('fonts/iconbasic.eot?opd0fo#iefix') format('embedded-opentype'),
+    url('fonts/iconbasic.ttf?opd0fo') format('truetype'),
+    url('fonts/iconbasic.woff?opd0fo') format('woff'),
+    url('fonts/iconbasic.svg?opd0fo#iconbasic') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-chevron-left:before {
+  content: "\e90d";
+}
+.icon-chevron-right:before {
+  content: "\e90e";
+}
 .icon-buy-bag:before {
   content: "\e90a";
 }
