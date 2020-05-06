@@ -1,5 +1,6 @@
 @import './normalize.css';
 @import './header.css';
+@import './item.css';
   /*Se importan las fuentes  */
 @import '../font/style.css';
 :root{
@@ -16,6 +17,7 @@ body{
     font-size: 16px;
     min-height: 100vh;
     margin-top: 60px;
+    padding: 0.1px;
 }
 
 
