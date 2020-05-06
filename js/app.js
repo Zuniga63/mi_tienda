@@ -37,11 +37,20 @@ const menuController = () => {
     const navbarToggler = document.getElementById('navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar .navbar__nav');
     const dropdowns = document.querySelectorAll('.dropdown');
+    const main = document.querySelector('main');
 
     //Se agrega la fucionalidad del boton del menú
     navbarToggler.addEventListener('click', () => {
         showMenu(navbarCollapse);
     });
+
+    //Si se da click fuera del menu este se debe cerrar, no se como funcionará por lo que
+    //es codigo temporal
+    main.addEventListener('click', ()=>{
+        if(navbarCollapse.classList.contains('show')){
+            showMenu(navbarCollapse);
+        }
+    })
 
     //Se agrega la funcionalidad a los menú de los dropdown
     dropdowns.forEach(drop => {
