@@ -1,6 +1,6 @@
 @import './normalize.css';
 @import './header.css';
-@import './item.css';
+@import './card.css';
   /*Se importan las fuentes  */
 @import '../font/style.css';
 :root{
@@ -18,6 +18,11 @@ body{
     min-height: 100vh;
     margin-top: 60px;
     padding: 0.1px;
+}
+
+.container-flex{
+    display: flex;
+    justify-content: space-between;
 }
 
 

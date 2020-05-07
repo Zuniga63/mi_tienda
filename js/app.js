@@ -70,6 +70,48 @@ const menuController = () => {
     });
 }
 
+/**
+ * Este metodo controla los eventos que ocurren en las tarjetas de los producto
+ * mas que nada lo que ocurre cuando se da click a la pildora de imagenes
+ * y cuando se da click a alguna de las imagenes
+ */
+const cardGalleryControler = () =>{
+    //Obtengo todas las tarjetas del documento
+    let cards = document.querySelectorAll('.card');
+
+    //Se agrega la funcionalidad a cada una de las tarjetas
+    cards.forEach(card => {
+        let pill = card.querySelector('.card__pill');
+        let cardImg = card.querySelector('.card__img');
+        let gallery = card.querySelector('.card__gallery');
+        let galleryImgs = gallery.querySelectorAll('.card__gallery__img');
+
+        /**
+         * Pendiente que las imagenes de los producto se deben descargar cuando el cliente
+         * le de click a la pildora de imagenes
+         */
+        pill.addEventListener('click', ()=>{
+            if(pill.classList.contains('active')){
+                pill.classList.remove('active');
+                gallery.classList.remove('show');
+            }else{
+                pill.classList.add('active');
+                gallery.classList.add('show');
+            }
+        })
+
+        galleryImgs.forEach(img => {
+            img.addEventListener('click', ()=>{
+                let src = img.getAttribute('src');
+                let srcDestination = cardImg.getAttribute('src');
+                cardImg.setAttribute('src', src);
+                img.setAttribute('src', srcDestination);
+            })
+        });
+    });
+}
+
 window.addEventListener('load', () => {
     menuController();
+    cardGalleryControler();
 })
