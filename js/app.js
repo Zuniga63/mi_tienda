@@ -70,6 +70,56 @@ const menuController = () => {
     });
 }
 
+const sliderController = ()=>{
+    const slider = document.querySelector('.slider');
+    const sliderContainer = slider.querySelector('.slider__items');
+    const btnNext = slider.querySelector('.slider__btn-next');
+    const btnPrev = slider.querySelector('.slider__btn-prev');
+    const items = sliderContainer.querySelectorAll('.slider__item');
+
+    //Ahora lo que se hace es mover el ultimo elemento al primer lugar
+    sliderContainer.insertBefore(items[items.length -1], items[0]);
+
+    //Como ahora el ultimo aparece de primero lo que hago es poner un margen izquierdo
+    //con valor igual al -100%
+    sliderContainer.style.marginLeft = '-100%';
+
+    //Ahora agrego el evento click al boton derecho
+    btnNext.addEventListener('click', ()=>{
+        const slider = document.querySelector('.slider');
+        const sliderContainer = slider.querySelector('.slider__items');
+        const items = sliderContainer.querySelectorAll('.slider__item');
+        //Lo primero que hago es insertar el primer nodo al final
+        
+        sliderContainer.animate([
+            {marginLeft: '-100%'},
+            {marginLeft: '-200%'}
+        ], {duration:700});
+
+        setTimeout(() => {
+            sliderContainer.appendChild(items[0]);    
+        }, 700);
+    })
+
+    btnPrev.addEventListener('click', ()=>{
+        const slider = document.querySelector('.slider');
+        const sliderContainer = slider.querySelector('.slider__items');
+        const items = sliderContainer.querySelectorAll('.slider__item');
+
+        
+        sliderContainer.animate([
+            {marginLeft: '-100%'},
+            {marginLeft: '0'}
+        ], {duration:700});
+        
+        setTimeout(() => {
+            sliderContainer.insertBefore(items[items.length -1], items[0]);        
+        }, 700);
+
+    })
+
+}
+
 /**
  * Este metodo controla los eventos que ocurren en las tarjetas de los producto
  * mas que nada lo que ocurre cuando se da click a la pildora de imagenes
@@ -114,4 +164,5 @@ const cardGalleryControler = () =>{
 window.addEventListener('load', () => {
     menuController();
     cardGalleryControler();
+    sliderController();
 })
