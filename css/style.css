@@ -18,6 +18,8 @@ body{
     min-height: 100vh;
     margin-top: 60px;
     padding: 0.1px;
+
+    /* Las siguientes son reglas para ver el slider en accion */
     /* max-width: 320px; */
     /* margin-left: auto; */
     /* margin-right: auto; */
@@ -32,6 +34,7 @@ body{
     margin: auto;
     width: 100%;
     position: relative;
+    /* Para ver el slider en accion */
     overflow: hidden;
 }
 

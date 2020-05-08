@@ -1,4 +1,7 @@
-
+/**
+ * Contiene los sliders que poseen autoplay
+ */
+let sliderIntervals = [];
 
 /**
  * Este metodo lo que hace es modificar el alto del elemento html ya sea un navbar__collapse o un 
@@ -46,8 +49,8 @@ const menuController = () => {
 
     //Si se da click fuera del menu este se debe cerrar, no se como funcionará por lo que
     //es codigo temporal
-    main.addEventListener('click', ()=>{
-        if(navbarCollapse.classList.contains('show')){
+    main.addEventListener('click', () => {
+        if (navbarCollapse.classList.contains('show')) {
             showMenu(navbarCollapse);
         }
     })
@@ -59,10 +62,10 @@ const menuController = () => {
             showMenu(menu);
             //Con lo siguiente se actualiza el chevron que apunta hacia abajo o arriba
             let caret = drop.querySelector('.navbar__link__append');
-            if(menu.classList.contains('show')){
+            if (menu.classList.contains('show')) {
                 caret.classList.remove('icon-chevron-down');
                 caret.classList.add('icon-chevron-up');
-            }else{
+            } else {
                 caret.classList.remove('icon-chevron-up');
                 caret.classList.add('icon-chevron-down');
             }
@@ -70,62 +73,152 @@ const menuController = () => {
     });
 }
 
-const sliderController = ()=>{
-    const slider = document.querySelector('.slider');
-    const sliderContainer = slider.querySelector('.slider__items');
-    const btnNext = slider.querySelector('.slider__btn-next');
-    const btnPrev = slider.querySelector('.slider__btn-prev');
-    const items = sliderContainer.querySelectorAll('.slider__item');
-
-    //Ahora lo que se hace es mover el ultimo elemento al primer lugar
-    sliderContainer.insertBefore(items[items.length -1], items[0]);
-
-    //Como ahora el ultimo aparece de primero lo que hago es poner un margen izquierdo
-    //con valor igual al -100%
-    sliderContainer.style.marginLeft = '-100%';
-
-    //Ahora agrego el evento click al boton derecho
-    btnNext.addEventListener('click', ()=>{
-        const slider = document.querySelector('.slider');
+const sliderController = () => {
+    //Se recuperan todos los sliders del docuemento
+    const sliders = document.querySelectorAll('.slider');
+    sliders.forEach(slider => {
+        //Se recupera el contenedor para poder ajustarle el ancho segun los elementos
         const sliderContainer = slider.querySelector('.slider__items');
+        const btnNext = slider.querySelector('.slider__btn-next');
+        const btnPrev = slider.querySelector('.slider__btn-prev');
         const items = sliderContainer.querySelectorAll('.slider__item');
-        //Lo primero que hago es insertar el primer nodo al final
-        
-        sliderContainer.animate([
-            {marginLeft: '-100%'},
-            {marginLeft: '-200%'}
-        ], {duration:700});
+        let id = slider.getAttribute('id');
 
-        setTimeout(() => {
-            sliderContainer.appendChild(items[0]);    
-        }, 700);
-    })
+        //Se ajusta el ancho del contenedor
+        sliderContainer.style.width = `${items.length * 100}%`;
+        //Se mueve el ultimo elemento al inicio
+        sliderContainer.insertBefore(items[items.length - 1], items[0]);
+        //Se mueve el margen un 100% a la izquierda
+        sliderContainer.style.marginLeft = '-100%';
 
-    btnPrev.addEventListener('click', ()=>{
-        const slider = document.querySelector('.slider');
-        const sliderContainer = slider.querySelector('.slider__items');
-        const items = sliderContainer.querySelectorAll('.slider__item');
+        btnNext.addEventListener('click', (e) => {
+            sliderNext(id, 700);
+            sliderAutoplayStop(searchSliderRoot(e.target));
+        })
 
-        
-        sliderContainer.animate([
-            {marginLeft: '-100%'},
-            {marginLeft: '0'}
-        ], {duration:700});
-        
-        setTimeout(() => {
-            sliderContainer.insertBefore(items[items.length -1], items[0]);        
-        }, 700);
+        btnPrev.addEventListener('click', (e) => {
+            sliderPrev(id, 700);
+            sliderAutoplayStop(searchSliderRoot(e.target));
+        })
+    });
 
-    })
+    sliderAutoplay('featureProductsSlider', 700, 1000);
+    sliderAutoplay('featureProductsSlider2', 700, 1100);
 
 }
 
+const searchSliderRoot = eTarget =>{
+    let parent = eTarget.parentNode;
+    while(!parent.getAttribute('id')){
+        parent = parent.parentNode;
+    }
+
+    return parent.getAttribute('id');
+}
+
+/**
+ * Mueve los elementos del slider hacia la izquierda y al finalizar ubica 
+ * el primer elemento al final de la cola
+ * @param {string} sliderId Es el identificador del slider
+ * @param {Int32Array} duration tiempo en milisegundo
+ */
+const sliderNext = (sliderId, duration = 700) => {
+    let slider = sliderParam(sliderId);
+
+    slider.container.animate({ marginLeft: '-200%' }, duration, () => {
+        $(slider.firstItem).insertAfter(slider.lastItem);
+        slider.container[0].style.marginLeft = '-100%';
+    })
+}
+
+/**
+ * Mueve los elementos del slider de derecha a izquierda y al finalizar
+ * ubica el ultimo elemento al inicio de todo
+ * @param {string} sliderId El id del eslider que se quiere modificar
+ * @param {int} duration El tiempo de la animacion en ms 700 ms por defecto
+ */
+const sliderPrev = (sliderId, duration = 700) => {
+    let slider = sliderParam(sliderId);
+
+    slider.container.animate({ marginLeft: '0' }, duration, () => {
+        $(slider.lastItem).insertBefore(slider.firstItem);
+        slider.container[0].style.marginLeft = '-100%';
+    })
+}
+
+/**
+ * Este metodo recupera el contendor del slider, el primer elemento y el ultimo
+ * @param {string} sliderId Identificador del slider
+ * @return {JSON} slider 
+ */
+const sliderParam = (sliderId) => {
+    return {
+        container: $(`#${sliderId} .slider__items`),
+        firstItem: $(`#${sliderId} .slider__item:first`),
+        lastItem: $(`#${sliderId} .slider__item:last`)
+    }
+}
+
+/**
+ * Agrega un intervalo de movimiento del slider que por defecto la animacion dura 700 ms 
+ * y el tiempo del intervalo es de 1000 ms
+ * @param {string} sliderId El identificador del slider
+ * @param {int} duration es la velocidad de la animacion
+ * @param {int} time tiempo en el que se repite el intervalo
+ */
+const sliderAutoplay = (sliderId, duration = 700, time = 1000, toRight = true) => {
+    let interval = null;
+    let slider = null;
+
+    //En primer lugar se va a detener el intervalo que se está ejecuntado si lo hay
+    sliderIntervals.forEach(item => {
+        if (item.sliderId === sliderId) {
+            clearInterval(item.interval);
+            slider = item;
+        }
+    });
+
+    //Se pone en marcha el nuevo intervalo
+    interval = setInterval(() => {
+        if(toRight){
+            sliderNext(sliderId, duration);
+        }else{
+            sliderPrev(sliderId, duration);
+        }
+    }, time);
+    
+    //Se actualiza o se crea el intervalo
+    if (slider) {
+        slider.interval = interval;
+    } else {
+        sliderIntervals.push({ sliderId, interval });
+    }
+}
+
+const sliderAutoplayPause = (sliderId, delay=5000, duration =700, time =1000) => {
+    //TODO:No se como implementar esta funcionalidad
+}
+
+/**
+ * Este metodo busca en el array de intervalos alguno que coincida con el id pasado
+ * como parametro y detiene el proceso de ejecuacion
+ * @param {string} sliderId Identificador del slider que tiene el autoplay
+ */
+const sliderAutoplayStop = sliderId =>{
+    for (let index = 0; index < sliderIntervals.length; index++) {
+        const interval = sliderIntervals[index];
+        if(interval.sliderId === sliderId){
+            clearInterval(interval.interval);
+            break;
+        }
+    }
+}
 /**
  * Este metodo controla los eventos que ocurren en las tarjetas de los producto
  * mas que nada lo que ocurre cuando se da click a la pildora de imagenes
  * y cuando se da click a alguna de las imagenes
  */
-const cardGalleryControler = () =>{
+const cardGalleryControler = () => {
     //Obtengo todas las tarjetas del documento
     let cards = document.querySelectorAll('.card');
 
@@ -140,18 +233,18 @@ const cardGalleryControler = () =>{
          * Pendiente que las imagenes de los producto se deben descargar cuando el cliente
          * le de click a la pildora de imagenes
          */
-        pill.addEventListener('click', ()=>{
-            if(pill.classList.contains('active')){
+        pill.addEventListener('click', () => {
+            if (pill.classList.contains('active')) {
                 pill.classList.remove('active');
                 gallery.classList.remove('show');
-            }else{
+            } else {
                 pill.classList.add('active');
                 gallery.classList.add('show');
             }
         })
 
         galleryImgs.forEach(img => {
-            img.addEventListener('click', ()=>{
+            img.addEventListener('click', () => {
                 let src = img.getAttribute('src');
                 let srcDestination = cardImg.getAttribute('src');
                 cardImg.setAttribute('src', src);
