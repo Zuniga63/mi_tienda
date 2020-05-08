@@ -16,7 +16,7 @@ body{
     font-family: 'Raleway', sans-serif;
     font-size: 16px;
     min-height: 100vh;
-    margin-top: 60px;
+    margin-top: 96px;
     padding: 0.1px;
 
     /* Las siguientes son reglas para ver el slider en accion */
@@ -77,5 +77,124 @@ body{
     right: 10px;
 }
 
+
+.banner{
+    position: relative;
+}
+
+.banner::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 900;
+    top: 0;
+}
+
+.banner__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner__img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.banner__slide{
+    display: flex;
+    transform: translate3d(0,0,0);
+    transition: all 900ms;
+    animation: autoplay;
+    animation-duration: 10s;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.banner__item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-grow: 0;
+    max-width: 100%;
+}
+
+.banner__pagination{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    z-index: 100;
+}
+
+.banner__pagination__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 10px;
+    text-align: center;
+    transition: all 300ms;
+}
+
+.banner__pagination__item:hover{
+    background-color: #fff;
+}
+
+input[id="1"]:checked~ .banner__slide{
+    animation: none;
+    transform: translate3d(0,0,0);
+}
+
+input[id="1"]:checked~ .banner__pagination__item[for='1']{
+    background: #fff;
+}
+
+input[id="2"]:checked~ .banner__slide{
+    animation: none;
+    transform: translate3d(-100%,0,0);
+}
+
+input[id="2"]:checked~ .banner__pagination__item[for='2']{
+    background: #fff;
+}
+
+input[id="3"]:checked~ .banner__slide{
+    animation: none;
+    transform: translate3d(-200%,0,0);
+}
+
+input[id="3"]:checked~ .banner__pagination__item[for='3']{
+    background: #fff;
+}
+
+@keyframes autoplay{
+    33%{
+        transform: translate3d(0,0,0);
+    }
+
+    66%{
+        transform: translate3d(-100%, 0,0);
+    }
+
+    100%{
+        transform: translate3d(-200%, 0, 0);
+    }
+}
 
 

@@ -7,6 +7,27 @@
     /* max-width: 320px; */
 }
 
+.text-header__info{
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.text-header__info--red{
+    background-color: #ff3a24;
+}
+
+.text-header__info--yellow{
+    background-color: #f1c40f;
+}
+
+.text-header__info--purple{
+    background-color: #8e44ad;
+}
+
 .navbar{
     padding: 0.5rem 1rem;
     position: relative;

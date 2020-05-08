@@ -17,13 +17,31 @@
       rel="stylesheet"
     />
 
-    <!-- El icono de la aplicacion -->
+    <!-- El icono del sitio web -->
     <link rel="icon" type="image/icon" href="./img/favicon.ico" />
 
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <header class="header">
+      <!-- Inicio del texto sobre el navbar -->
+      <div class="text-header" id="textHeader">
+        <div class="slider">
+          <div class="slider__items">
+            <div class="slider__item">
+              <p class="text-header__info text-header__info--red">El sabio crea, los demas copian</p>
+            </div>
+            <div class="slider__item">
+              <p class="text-header__info text-header__info--purple">Habla menos y observa mas</p>
+            </div>
+            <div class="slider__item">
+              <p class="text-header__info text-header__info--yellow">Uno es lo que elige ser.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inicio del navbar -->
       <nav class="navbar">
         <a href="#" class="navbar__brand">
           <img
@@ -78,144 +96,36 @@
           </ul>
         </div>
       </nav>
+      <!-- Fin del navbar -->
     </header>
 
     <main>
-      <div class="slider" id="featureProductsSlider">
-        <div class="slider__items">
-          <div class="slider__item">
-            <article class="card">
-              <header class="card__header">
-                <div
-                  class="card__sticker card__sticker--left card__sticker--new"
-                >
-                  New
-                </div>
-                <figure class="card__fig">
-                  <img
-                    src="./img/productos/Bolsos/Bolso_cambri_azul.jpg"
-                    alt="Bolso_cambri_azul"
-                    class="card__img"
-                  />
-                </figure>
-                <div class="card__gallery">
-                  <figure class="card__gallery__item">
-                    <img
-                      src="./img/productos/Bolsos/Bolso_cambri_rosado.jpg"
-                      alt=""
-                      class="card__gallery__img"
-                    />
-                  </figure>
-                </div>
-                <div class="card__pill">Imagenes</div>
-              </header>
-              <div class="card__body">
-                <div class="container-flex">
-                  <p class="card__old-price">$150,000</p>
-                  <p class="card__free-shipping">Entrega inmediata</p>
-                </div>
-                <div class="container-flex">
-                  <p class="card__retail-price">$120,000</p>
-                  <p class="card__off">10% <span>Dct</span></p>
-                </div>
-                <p class="card__item-name">Bolso cambrí</p>
-              </div>
-            </article>
+      <div class="banner">
+        <div class="banner__container">
+          <input type="radio" id="1" name="image-slide" hidden>
+          <input type="radio" id="2" name="image-slide" hidden>
+          <input type="radio" id="3" name="image-slide" hidden>
+
+          <div class="banner__slide">
+            <div class="banner__item">
+              <img src="./img/banners/banner_1.jpg" alt="" class="banner__img">
+            </div>
+            <div class="banner__item">
+              <img src="./img/banners/banner_2.jpg" alt="" class="banner__img">
+            </div>
+            <div class="banner__item">
+              <img src="./img/banners/banner_3.jpg" alt="" class="banner__img">
+            </div>
           </div>
 
-          <div class="slider__item">
-            <article class="card">
-              <header class="card__header">
-                <div
-                  class="card__sticker card__sticker--left card__sticker--new"
-                >
-                  New
-                </div>
-                <figure class="card__fig">
-                  <img
-                    src="./img/productos/Bolsos/Bolso_startgirl_L.jpg"
-                    alt="Bolso_cambri_azul"
-                    class="card__img"
-                  />
-                </figure>
-                <div class="card__gallery disabled">
-                  <figure class="card__gallery__item">
-                    <img
-                      src="./img/productos/Bolsos/Bolso_cambri_rosado.jpg"
-                      alt=""
-                      class="card__gallery__img"
-                    />
-                  </figure>
-                </div>
-                <div class="card__pill disabled">Imagenes</div>
-              </header>
-              <div class="card__body">
-                <div class="container-flex">
-                  <p class="card__old-price"></p>
-                  <p class="card__free-shipping">Entrega inmediata</p>
-                </div>
-                <div class="container-flex">
-                  <p class="card__retail-price">$129,900</p>
-                  <p class="card__off disabled">10% <span>Dct</span></p>
-                </div>
-                <p class="card__item-name">Morral de niña Totto Star Girls M</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="slider__item">
-            <article class="card">
-              <header class="card__header">
-                <div
-                  class="card__sticker card__sticker--left card__sticker--new disabled"
-                >
-                  New
-                </div>
-                <figure class="card__fig">
-                  <img
-                    src="./img/productos/Bolsos/Mochila_mediana_estampada_rayol.jpg"
-                    alt="Bolso_cambri_azul"
-                    class="card__img"
-                  />
-                </figure>
-                <div class="card__gallery">
-                  <figure class="card__gallery__item">
-                    <img
-                      src="./img/productos/Bolsos/Mochila_mediana_estampada_rayol_morado.jpg"
-                      alt=""
-                      class="card__gallery__img"
-                    />
-                  </figure>
-
-                  <figure class="card__gallery__item">
-                    <img
-                      src="./img/productos/Bolsos/Bolso_tempera_azul.jpg"
-                      alt=""
-                      class="card__gallery__img"
-                    />
-                  </figure>
-                </div>
-                <div class="card__pill">Imagenes</div>
-              </header>
-              <div class="card__body">
-                <div class="container-flex">
-                  <p class="card__old-price">$79,900</p>
-                  <p class="card__free-shipping">Ultimas unidades</p>
-                </div>
-                <div class="container-flex">
-                  <p class="card__retail-price">$64,000</p>
-                  <p class="card__off">20% <span>Dct</span></p>
-                </div>
-                <p class="card__item-name">Morral Tempera Rayol Totto</p>
-              </div>
-            </article>
+          <div class="banner__pagination">
+            <label for="1" class="banner__pagination__item"></label>
+            <label for="2" class="banner__pagination__item"></label>
+            <label for="3" class="banner__pagination__item"></label>
           </div>
         </div>
-        <div class="slider__btn-prev"><i class="icon-chevron-left"></i></div>
-        <div class="slider__btn-next"><i class="icon-chevron-right"></i></div>
       </div>
-
-      <div class="slider" id="featureProductsSlider2">
+      <div class="slider" id="featureProductsSlider">
         <div class="slider__items">
           <div class="slider__item">
             <article class="card">
