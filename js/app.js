@@ -91,25 +91,27 @@ const sliderController = () => {
         //Se mueve el margen un 100% a la izquierda
         sliderContainer.style.marginLeft = '-100%';
 
-        btnNext.addEventListener('click', (e) => {
-            sliderNext(id, 700);
-            sliderAutoplayStop(searchSliderRoot(e.target));
-        })
+        if (btnNext && btnPrev) {
+            btnNext.addEventListener('click', (e) => {
+                sliderNext(id, 700);
+                sliderAutoplayStop(searchSliderRoot(e.target));
+            })
 
-        btnPrev.addEventListener('click', (e) => {
-            sliderPrev(id, 700);
-            sliderAutoplayStop(searchSliderRoot(e.target));
-        })
+            btnPrev.addEventListener('click', (e) => {
+                sliderPrev(id, 700);
+                sliderAutoplayStop(searchSliderRoot(e.target));
+            })
+        }
     });
 
-    sliderAutoplay('featureProductsSlider', 700, 1000);
-    sliderAutoplay('featureProductsSlider2', 700, 1100);
+    sliderAutoplay('featureProductsSlider', 700, 3000);
+    sliderAutoplay('textHeader', 500, 2500);
 
 }
 
-const searchSliderRoot = eTarget =>{
+const searchSliderRoot = eTarget => {
     let parent = eTarget.parentNode;
-    while(!parent.getAttribute('id')){
+    while (!parent.getAttribute('id')) {
         parent = parent.parentNode;
     }
 
@@ -180,13 +182,13 @@ const sliderAutoplay = (sliderId, duration = 700, time = 1000, toRight = true) =
 
     //Se pone en marcha el nuevo intervalo
     interval = setInterval(() => {
-        if(toRight){
+        if (toRight) {
             sliderNext(sliderId, duration);
-        }else{
+        } else {
             sliderPrev(sliderId, duration);
         }
     }, time);
-    
+
     //Se actualiza o se crea el intervalo
     if (slider) {
         slider.interval = interval;
@@ -195,7 +197,7 @@ const sliderAutoplay = (sliderId, duration = 700, time = 1000, toRight = true) =
     }
 }
 
-const sliderAutoplayPause = (sliderId, delay=5000, duration =700, time =1000) => {
+const sliderAutoplayPause = (sliderId, delay = 5000, duration = 700, time = 1000) => {
     //TODO:No se como implementar esta funcionalidad
 }
 
@@ -204,10 +206,10 @@ const sliderAutoplayPause = (sliderId, delay=5000, duration =700, time =1000) =>
  * como parametro y detiene el proceso de ejecuacion
  * @param {string} sliderId Identificador del slider que tiene el autoplay
  */
-const sliderAutoplayStop = sliderId =>{
+const sliderAutoplayStop = sliderId => {
     for (let index = 0; index < sliderIntervals.length; index++) {
         const interval = sliderIntervals[index];
-        if(interval.sliderId === sliderId){
+        if (interval.sliderId === sliderId) {
             clearInterval(interval.interval);
             break;
         }
