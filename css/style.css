@@ -80,6 +80,7 @@ body{
 
 .banner{
     position: relative;
+    margin-bottom: 60px;
 }
 
 .banner::before{
@@ -135,7 +136,7 @@ body{
     justify-content: center;
     width: 100%;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .banner__pagination__item{
@@ -197,4 +198,54 @@ input[id="3"]:checked~ .banner__pagination__item[for='3']{
     }
 }
 
+.feature-products{
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.feature-products__title{
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    text-transform: uppercase;
+}
+
+.footer{
+    background-color: var(--dark);
+    color: white;
+    padding: 20px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+.contact-us,
+.social{
+    margin-bottom: 40px;
+}
+
+.contact-us__txt,
+.social__txt{
+    margin: 0;
+    margin-left: 10px;
+    padding: 10px 0;
+}
+
+
+.contact-us__txt span,
+.social span{
+    margin-left: 5px;
+}
+
+.social__link{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 10px 0;
+}
+
+.copy{
+    text-align: center;
+    font-size: 0.8em;
+}
 
